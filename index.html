@@ -8,14 +8,70 @@
     <link rel="stylesheet" href="reset.css" />
     <!-- CSS -->
     <link rel="stylesheet" href="styles.css" />
+    <!-- Copy/Paste -->
+    <link rel="stylesheet" href="copypaste.css" />
     <!-- Fonts -->
-    <!-- Insert Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet" />
     <title>Document</title>
   </head>
   <body>
-    <h1>JavaScript and only JavaScript</h1>
+    <h1 class="big-boi">JavaScript and only JavaScript</h1>
 
-    <div id="root"></div>
+    <div class="choice-container">
+      <div class="choice-item">
+        <h1>Object</h1>
+        <label class="switch">
+          <input type="checkbox" id="object-choice" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <div class="choice-item">
+        <h1>Array</h1>
+        <label class="switch">
+          <input type="checkbox" id="array-choice" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+
+      <div class="choice-item">
+        <h1>Array of Objects</h1>
+        <label class="switch">
+          <input type="checkbox" id="aobj-choice" />
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+
+    <div id="form-input" class="input">
+      <label for="text">Input</label>
+      <input type="text" id="text-input" />
+      <button id="submit">Submit</button>
+
+      <h1 id="error">You need to input something :)</h1>
+    </div>
+
+    <div class="output">
+      <div class="output-wrapper">
+        <h1 class="output-header">Text</h1>
+        <ul id="text-output"></ul>
+      </div>
+
+      <div class="output-wrapper">
+        <h1 class="output-header">Object</h1>
+        <ul id="object-output"></ul>
+      </div>
+
+      <div class="output-wrapper">
+        <h1 class="output-header">Array</h1>
+        <ul id="array-output"></ul>
+      </div>
+
+      <div class="output-wrapper">
+        <h1 class="output-header">Object Array</h1>
+        <ul id="aobj-output"></ul>
+      </div>
+    </div>
 
     <!-- JS Import -->
     <script src="scripts.js"></script>

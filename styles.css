@@ -1,0 +1,72 @@
+html,
+body {
+  font-family: "Maven Pro", sans-serif;
+  padding: 1rem;
+}
+.big-boi {
+  font-size: 2rem;
+  padding: 1rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.input {
+  display: flex;
+  width: 15rem;
+  height: 10rem;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.output {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.output-wrapper {
+  width: 50%;
+  border-bottom: 1px solid black;
+}
+
+ul li {
+  padding: 0.5rem 0;
+}
+
+.output-header {
+  font-size: 2rem;
+  padding-bottom: 2rem;
+  text-decoration: underline;
+  text-align: center;
+}
+
+#submit {
+  width: 5rem;
+  height: 2rem;
+}
+
+#error {
+  color: red;
+  visibility: hidden;
+}
+
+.shown {
+  visibility: visible !important;
+}
+
+.choice-container {
+  display: flex;
+  justify-items: space-around;
+}
+
+.choice-item {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+.choice-container h1 {
+  margin: 0.5rem 0;
+}
