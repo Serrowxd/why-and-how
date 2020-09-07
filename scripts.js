@@ -31,7 +31,7 @@ submit.addEventListener("click", () => {
     return;
   }
 
-  // Switch case? Has to check the state of 3 different items.. What do I pass the conditional?
+  // Switch case? Has to check the state of 3 different items.. What do I pass for the expression?
 
   // Create list item node and append form value
   const node = document.createElement("LI");
