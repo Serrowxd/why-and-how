@@ -12,10 +12,9 @@ const submit = document.getElementById("submit");
 const error = document.getElementById("error");
 
 const output = document.getElementById("text-output");
+const objectOutput = document.getElementById("object-output");
 const arrayOutput = document.getElementById("array-output");
 const aobjOutput = document.getElementById("aobj-output");
-
-const choiceWrapper = document.getElementsByClassName("choice-item");
 
 const objectChoice = document.getElementById("object-choice");
 const arrayChoice = document.getElementById("array-choice");
@@ -23,11 +22,13 @@ const aobjChoice = document.getElementById("aobj-choice");
 
 let arr = [];
 let objarr = [];
+let gcounter = 1;
 
+// Click handler
 submit.addEventListener("click", () => {
   submitHandler();
 });
-
+// Enter Handler
 form.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     submitHandler();
@@ -42,12 +43,10 @@ const submitHandler = () => {
 
     return;
   }
-
   // Object Toggle
   if (objectChoice.checked) {
-    ShowObject(objectChoice);
+    ShowObject(form.value, gcounter);
   }
-
   // Array Toggle
   if (arrayChoice.checked) {
     if (!arr.length == 0) {
@@ -57,7 +56,6 @@ const submitHandler = () => {
     ShowArray(arr);
     console.log(arr);
   }
-
   // Array Object Toggle
   if (aobjChoice.checked) {
     if (!objarr.length == 0) {
@@ -65,7 +63,6 @@ const submitHandler = () => {
     }
     ShowAobj(aobjChoice);
   }
-
   // Create list item node and append form value
   CreateNode(form.value, output);
   // Remove shown class
@@ -74,26 +71,52 @@ const submitHandler = () => {
   form.value = "";
 };
 
-// add optional input that checks for array length?
 const CreateNode = (value, node) => {
   const output = node;
   const itemNode = document.createElement("LI");
   const textNode = document.createTextNode(value);
+  // Arrays can be seen as Objects with "typeof", so we make sure it's not an array.
+  if (!Array.isArray(value) && typeof value == "object") {
+    const keyNode = document.createTextNode(value.id + ":");
+    const valueNode = document.createTextNode(value.data);
 
+    itemNode.appendChild(keyNode);
+    itemNode.appendChild(valueNode);
+    output.appendChild(itemNode);
+
+    return;
+  }
+
+  // If above conditions are not met, proceed as normal
   itemNode.appendChild(textNode);
   output.appendChild(itemNode);
 };
 
-// Add the input to an object with unique id
+// Data Constructor
+class DataObj {
+  constructor(id, data) {
+    this.id = id;
+    this.data = data;
+  }
+}
+
+// Add the input to an array
 const ShowArray = (input) => {
   const output = arrayOutput;
   CreateNode(input, output);
 };
-// Add the input to an array
-const ShowObject = (input) => {
-  // Object can keep old dada, just needs to show the object structure
-  console.log("ShowObject");
-  console.log(input);
+
+// Add the input to an object with unique id
+const ShowObject = (input, gcount) => {
+  const output = objectOutput;
+  // Get global counter
+  let counter = gcount;
+  // Pass counter to constructor
+  let newObj = new DataObj(counter, input);
+  // Increment global counter
+  gcounter = counter += 1;
+  // Generate node
+  CreateNode(newObj, output);
 };
 // Throw the individual input objects into an array!
 const ShowAobj = (input) => {
