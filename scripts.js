@@ -104,7 +104,9 @@ const CreateNode = (value, node) => {
 
       console.log(itemNode.appendChild(arrKeyNode));
       console.log(itemNode.appendChild(arrValueNode));
+
       console.log(output.appendChild(itemNode));
+      // [object object] return is coming from the output node
     });
   }
 
