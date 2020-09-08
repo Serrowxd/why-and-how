@@ -4,6 +4,7 @@ window.addEventListener("load", () => {
 
 // Notes
 // Slider is .checked for boolean return
+// Object and Aobj counters both increment the global counter
 
 // JS
 
@@ -59,9 +60,9 @@ const submitHandler = () => {
   // Array Object Toggle
   if (aobjChoice.checked) {
     if (!objarr.length == 0) {
-      arrayOutput.removeChild(arrayOutput.firstElementChild);
+      aobjOutput.removeChild(aobjOutput.firstElementChild);
     }
-    ShowAobj(aobjChoice);
+    ShowAobj(form.value, gcounter);
   }
   // Create list item node and append form value
   CreateNode(form.value, output);
@@ -77,7 +78,7 @@ const CreateNode = (value, node) => {
   const textNode = document.createTextNode(value);
   // Arrays can be seen as Objects with "typeof", so we make sure it's not an array.
   if (!Array.isArray(value) && typeof value == "object") {
-    const keyNode = document.createTextNode(value.id + ":");
+    const keyNode = document.createTextNode(value.id + ": ");
     const valueNode = document.createTextNode(value.data);
 
     itemNode.appendChild(keyNode);
@@ -85,6 +86,26 @@ const CreateNode = (value, node) => {
     output.appendChild(itemNode);
 
     return;
+  }
+  // Checking for array, but needs to have an object inside it.
+  if (Array.isArray(value) && typeof value[0] == "object") {
+    value.forEach((item) => {
+      // Create key/value node for each item in the array
+
+      const arrKeyNode = document.createTextNode(item.id + ": ");
+      const arrValueNode = document.createTextNode(item.data);
+
+      itemNode.appendChild(arrKeyNode);
+      itemNode.appendChild(arrValueNode);
+      output.appendChild(itemNode);
+      // Why are you showing me [object, object]
+
+      console.log(item);
+
+      console.log(itemNode.appendChild(arrKeyNode));
+      console.log(itemNode.appendChild(arrValueNode));
+      console.log(output.appendChild(itemNode));
+    });
   }
 
   // If above conditions are not met, proceed as normal
@@ -118,9 +139,19 @@ const ShowObject = (input, gcount) => {
   // Generate node
   CreateNode(newObj, output);
 };
+
 // Throw the individual input objects into an array!
-const ShowAobj = (input) => {
-  // Same logic as array output, remove old node to not repeat.
-  console.log("ShowAobj");
-  console.log(input);
+const ShowAobj = (input, gcount) => {
+  const output = aobjOutput;
+  let counter = gcount;
+  let newObj = new DataObj(counter, input);
+  let newArr = objarr;
+  gcounter = counter += 1;
+
+  console.log(newArr);
+
+  newArr.push(newObj);
+
+  console.log(newArr);
+  CreateNode(newArr, output);
 };
