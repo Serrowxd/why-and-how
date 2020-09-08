@@ -4,8 +4,6 @@ window.addEventListener("load", () => {
 
 // Notes
 // Slider is .checked for boolean return
-// Data return is initially going to be done as hidden blocks that are done automatically
-// Future data will only be new data input.
 
 // JS
 
@@ -26,8 +24,18 @@ const aobjChoice = document.getElementById("aobj-choice");
 let arr = [];
 let objarr = [];
 
-// Text is always shown by default
 submit.addEventListener("click", () => {
+  submitHandler();
+});
+
+form.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    submitHandler();
+  }
+});
+
+// Text is always shown by default
+const submitHandler = () => {
   // Check for no input
   if (!form.value) {
     error.classList.add("shown");
@@ -64,7 +72,7 @@ submit.addEventListener("click", () => {
   error.classList.remove("shown");
   // Clear form value
   form.value = "";
-});
+};
 
 // add optional input that checks for array length?
 const CreateNode = (value, node) => {
