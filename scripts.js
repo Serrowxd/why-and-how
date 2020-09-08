@@ -12,7 +12,10 @@ window.addEventListener("load", () => {
 const form = document.getElementById("text-input");
 const submit = document.getElementById("submit");
 const error = document.getElementById("error");
+
 const output = document.getElementById("text-output");
+const arrayOutput = document.getElementById("array-output");
+const aobjOutput = document.getElementById("aobj-output");
 
 const choiceWrapper = document.getElementsByClassName("choice-item");
 
@@ -25,8 +28,6 @@ let objarr = [];
 
 // Text is always shown by default
 submit.addEventListener("click", () => {
-  // Temporarily placing these in function scope so we can use them to hold the variables.
-
   // Check for no input
   if (!form.value) {
     error.classList.add("shown");
@@ -34,31 +35,41 @@ submit.addEventListener("click", () => {
     return;
   }
 
-  // Switch case? Has to check the state of 3 different items.. What do I pass for the expression?
-  // If statement block will check them and work like a switch case, works temporarily.
+  // Object Toggle
   if (objectChoice.checked) {
     ShowObject(objectChoice);
   }
+
+  // Array Toggle
   if (arrayChoice.checked) {
+    if (!arr.length == 0) {
+      arrayOutput.removeChild(arrayOutput.firstElementChild);
+    }
     arr.push(form.value);
     ShowArray(arr);
     console.log(arr);
   }
+
+  // Array Object Toggle
   if (aobjChoice.checked) {
+    if (!objarr.length == 0) {
+      arrayOutput.removeChild(arrayOutput.firstElementChild);
+    }
     ShowAobj(aobjChoice);
   }
 
   // Create list item node and append form value
-  CreateNode(form.value, output, "LI");
+  CreateNode(form.value, output);
   // Remove shown class
   error.classList.remove("shown");
   // Clear form value
   form.value = "";
 });
 
-const CreateNode = (value, node, type) => {
+// add optional input that checks for array length?
+const CreateNode = (value, node) => {
   const output = node;
-  const itemNode = document.createElement(type);
+  const itemNode = document.createElement("LI");
   const textNode = document.createTextNode(value);
 
   itemNode.appendChild(textNode);
@@ -67,16 +78,18 @@ const CreateNode = (value, node, type) => {
 
 // Add the input to an object with unique id
 const ShowArray = (input) => {
-  const output = document.getElementById("array-output");
-  CreateNode(input, output, "P");
+  const output = arrayOutput;
+  CreateNode(input, output);
 };
 // Add the input to an array
 const ShowObject = (input) => {
+  // Object can keep old dada, just needs to show the object structure
   console.log("ShowObject");
   console.log(input);
 };
 // Throw the individual input objects into an array!
 const ShowAobj = (input) => {
+  // Same logic as array output, remove old node to not repeat.
   console.log("ShowAobj");
   console.log(input);
 };
