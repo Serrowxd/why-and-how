@@ -23,19 +23,30 @@ body {
 
 .side-pannel {
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
   height: 100%;
   width: 20rem;
+}
+
+.side-pannel-wrapper-main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border-right: 1px solid black;
 }
 
 #pannel-items {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
-#pannel-items p {
+#pannel-items p,
+#pannel-foldout p {
   padding: 0.5rem;
   margin: 0.25rem;
   text-align: center;
@@ -43,7 +54,8 @@ body {
   transition: 0.15s;
 }
 
-#pannel-items p:hover {
+#pannel-items p:hover,
+#pannel-foldout p:hover {
   background-color: #2f2f2f;
   color: white;
   cursor: pointer;
@@ -56,6 +68,27 @@ body {
   height: 100%;
   width: 100%;
   background-color: inherit;
+}
+
+.shown {
+  width: 20rem !important;
+  visibility: visible !important;
+  border-right: 1px solid black;
+}
+
+.add-width {
+  width: 40rem;
+}
+
+.pannel-foldout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 0;
+  visibility: hidden;
+  transition: 0.15s;
 }
 
 /* I fucking hate CSS :^) */
