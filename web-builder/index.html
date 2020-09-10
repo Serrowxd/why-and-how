@@ -14,11 +14,27 @@
   </head>
   <body>
     <!-- Navigation / Options -->
-    <div class="nav"></div>
-    <!-- Side Bar (Selectors) -->
-    <div class="side-pannel"></div>
-    <!-- Site Preview (Center) -->
-    <div class="display-preview"></div>
+    <div class="nav">
+      <h1 class="nav-header">JS Site Builder</h1>
+    </div>
+    <div class="page-wrapper">
+      <!-- Side Bar (Selectors) -->
+      <div class="side-pannel">
+        <div class="side-pannel-wrapper">
+          <div class="pannel-nav">
+            <button id="populate-pannel">Populate Pannel</button>
+          </div>
+          <div id="pannel-items">
+            <p id="one" class="pannel-button">One</p>
+            <p id="two" class="pannel-button">Two</p>
+            <p id="three" class="pannel-button">Three</p>
+            <p id="four" class="pannel-button">Four</p>
+          </div>
+        </div>
+      </div>
+      <!-- Site Preview (Center) -->
+      <div id="display-preview"></div>
+    </div>
     <!-- JS Import -->
     <script src="scripts.js"></script>
   </body>
