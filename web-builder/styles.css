@@ -52,6 +52,8 @@ body {
   text-align: center;
   border: 1px solid black;
   transition: 0.15s;
+  width: 10rem;
+  align-self: center;
 }
 
 #pannel-items p:hover,
